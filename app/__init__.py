@@ -21,4 +21,16 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-# from app.controllers import *
+# modules = [ {'name': 'info', 'path': '/info', 'version': 1}, ]
+# for line in modules:
+#     module = importlib.import_module('os.path')
+# for service in lists:
+#     module = importlib.import_module('.views', pachage='app')
+#     app.register_blueprint(
+#         getattr(module, f'{service['db']}'),
+#         url_prefix=f'/{service['db']}'
+#     )
+
+from app.controller import *
+
+app.register_blueprint(info)
