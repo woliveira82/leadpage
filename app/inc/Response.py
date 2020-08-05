@@ -11,7 +11,7 @@ class Response:
         if simple_response:
             return data
         
-        if type(data) is  list:
+        if type(data) is list:
             return [instance.as_dict() for instance in data]
 
         if not data:
