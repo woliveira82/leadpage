@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from exception import ResponseException
+import importlib
 
 
 def handler_error(app):
@@ -21,16 +22,14 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-# modules = [ {'name': 'info', 'path': '/info', 'version': 1}, ]
-# for line in modules:
-#     module = importlib.import_module('os.path')
-# for service in lists:
-#     module = importlib.import_module('.views', pachage='app')
-#     app.register_blueprint(
-#         getattr(module, f'{service['db']}'),
-#         url_prefix=f'/{service['db']}'
-#     )
+modules = [
+    {'name': 'info', 'path': '/info', 'version': 1, 'package': 'open'},
+    {'name': 'login', 'path': '/login', 'version': 1, 'package': 'open'},
+]
 
-from app.controller import *
-
-app.register_blueprint(info)
+for item in modules:
+    module = importlib.import_module(f".{item['package']}", package='app.controller')
+    app.register_blueprint(
+        getattr(module, f"{item['name']}"),
+        url_prefix=f"{item['path']}"
+    )
