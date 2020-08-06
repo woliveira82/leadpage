@@ -4,14 +4,27 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from exception import ResponseException
 import importlib
+from werkzeug.exceptions import HTTPException
 
 
 def handler_error(app):
+    
+    
+    @app.errorhandler(HTTPException)
+    def handler_error(error):
+        return ResponseException(error.name, status=error.code).to_dict()
+
 
     @app.errorhandler(ResponseException)
     def handler_error(error):
         response = error.to_dict()
         return response, response['status']
+
+
+    @app.errorhandler(Exception)
+    def handler_error(error):
+        data = str(error)
+        return ResponseException(data, status=500).to_dict()
 
 app = Flask(__name__, instance_relative_config=True)
 handler_error(app)

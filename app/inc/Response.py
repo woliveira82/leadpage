@@ -16,6 +16,9 @@ class Response:
 
         if not data:
             return {}
+        
+        if isinstance(data, dict):
+            return data
 
         return data.as_dict()
 
