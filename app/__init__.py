@@ -5,6 +5,7 @@ from flask_migrate import Migrate, MigrateCommand
 from exception import ResponseException
 import importlib
 from werkzeug.exceptions import HTTPException
+from flask_jwt_extended import JWTManager
 
 
 def handler_error(app):
@@ -32,6 +33,7 @@ app.config.from_pyfile('config.py')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+jwt = JWTManager(app)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 

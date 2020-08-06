@@ -19,7 +19,6 @@ class Parser:
 
     
     def parse(self, kwargs):
-        print(kwargs)
         data = {}
         for k, v in kwargs.items():
             if not isinstance(v, Valid):
