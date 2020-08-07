@@ -13,7 +13,7 @@ def handler_error(app):
     
     @app.errorhandler(HTTPException)
     def handler_error(error):
-        return ResponseException(error.name, status=error.code).to_dict()
+        return ResponseException(error.name, status=error.code).to_dict(), error.code
 
 
     @app.errorhandler(ResponseException)
@@ -25,7 +25,7 @@ def handler_error(app):
     @app.errorhandler(Exception)
     def handler_error(error):
         data = str(error)
-        return ResponseException(data, status=500).to_dict()
+        return ResponseException(data, status=500).to_dict(), 500
 
 app = Flask(__name__, instance_relative_config=True)
 handler_error(app)
