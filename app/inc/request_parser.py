@@ -1,4 +1,4 @@
-from exception import ResponseException
+from app.exception import ResponseException
 
 
 class Valid:

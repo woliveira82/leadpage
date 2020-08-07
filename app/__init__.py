@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from exception import ResponseException
+from app.exception import ResponseException
 import importlib
 from werkzeug.exceptions import HTTPException
 from flask_jwt_extended import JWTManager
