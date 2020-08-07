@@ -40,6 +40,7 @@ manager.add_command('db', MigrateCommand)
 modules = [
     {'name': 'info', 'path': '/info', 'version': 1, 'package': 'open'},
     {'name': 'login', 'path': '/login', 'version': 1, 'package': 'open'},
+    {'name': 'token', 'path': '/token', 'version': 1, 'package': 'protected'},
 ]
 
 for item in modules:
