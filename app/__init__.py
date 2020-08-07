@@ -46,5 +46,5 @@ for item in modules:
     module = importlib.import_module(f".{item['package']}", package='app.controller')
     app.register_blueprint(
         getattr(module, f"{item['name']}"),
-        url_prefix=f"{item['path']}"
+        url_prefix=f"/api/v{item['version']}{item['path']}"
     )
