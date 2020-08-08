@@ -17,7 +17,7 @@ class User(db.Model, Dao):
     created_at = db.Column(db.Date, nullable=False)
     is_logged = db.Column(db.Boolean, nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
-    image = db.Column(db.String(255), nullable=False)
+    image = db.Column(db.String(255), nullable=True)
 
 
     def __init__(self, email, password, first_name, recovery_email=None, old_password=None, last_name=None, created_at=None, is_logged=None, is_active=None, image=None, id=None):

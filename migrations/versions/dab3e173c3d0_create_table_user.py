@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('created_at', sa.Date(), nullable=False),
     sa.Column('is_logged', sa.Boolean(), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=False),
-    sa.Column('image', sa.String(length=255), nullable=False),
+    sa.Column('image', sa.String(length=255), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
