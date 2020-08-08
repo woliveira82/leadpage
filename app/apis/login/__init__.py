@@ -1,6 +1,5 @@
 from flask import Blueprint
-
-from .apis import *
+from .LoginAPI import LoginAPI
 
 login = Blueprint('login', __name__, url_prefix='/login')
 

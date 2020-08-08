@@ -1,6 +1,5 @@
 from flask import Blueprint
-
-from .apis import *
+from .TokenAPI import TokenAPI
 
 token = Blueprint('token', __name__, url_prefix='/token')
 

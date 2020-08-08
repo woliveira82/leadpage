@@ -60,13 +60,13 @@ manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
 modules = [
-    {'name': 'info', 'path': '/info', 'version': 1, 'package': 'open'},
-    {'name': 'login', 'path': '/login', 'version': 1, 'package': 'open'},
-    {'name': 'token', 'path': '/token', 'version': 1, 'package': 'protected'},
+    {'name': 'info', 'path': '/info', 'version': 1},
+    {'name': 'login', 'path': '/login', 'version': 1},
+    {'name': 'token', 'path': '/tokens', 'version': 1},
 ]
 
 for item in modules:
-    module = importlib.import_module(f".{item['package']}", package='app.controller')
+    module = importlib.import_module(f".{item['name']}", package="app.apis")
     app.register_blueprint(
         getattr(module, f"{item['name']}"),
         url_prefix=f"/api/v{item['version']}{item['path']}"

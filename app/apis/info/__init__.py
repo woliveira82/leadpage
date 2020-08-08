@@ -1,6 +1,5 @@
 from flask import Blueprint
-
-from .apis import *
+from .InfoAPI import InfoAPI
 
 info = Blueprint('info', __name__, url_prefix='/info')
 
