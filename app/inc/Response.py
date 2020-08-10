@@ -12,7 +12,7 @@ class Response:
             return data
         
         if type(data) is list:
-            return [instance.as_dict() for instance in data]
+            return [instance.to_dict() for instance in data]
 
         if not data:
             return {}
@@ -20,7 +20,7 @@ class Response:
         if isinstance(data, dict):
             return data
 
-        return data.as_dict()
+        return data.to_dict()
 
 
     def to_dict(self):
