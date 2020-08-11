@@ -63,6 +63,7 @@ modules = [
     {'name': 'info', 'path': '/info', 'version': 1},
     {'name': 'login', 'path': '/login', 'version': 1},
     {'name': 'token', 'path': '/tokens', 'version': 1},
+    {'name': 'leads', 'path': '/leads', 'version': 1},
 ]
 
 for item in modules:
