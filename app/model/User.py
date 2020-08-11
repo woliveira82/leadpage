@@ -1,6 +1,8 @@
-from app import db
-from .Dao import Dao
 from datetime import datetime
+
+from app import db
+
+from . import Dao
 
 
 class User(db.Model, Dao):
@@ -14,7 +16,7 @@ class User(db.Model, Dao):
     old_password = db.Column(db.String(128), nullable=True)
     first_name = db.Column(db.String(128), nullable=False)
     last_name = db.Column(db.String(255), nullable=True)
-    created_at = db.Column(db.Date, nullable=False)
+    created_at = db.Column(db.Date, nullable=False, default=db.func.now())
     is_logged = db.Column(db.Boolean, nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
     image = db.Column(db.String(255), nullable=True)
@@ -32,4 +34,3 @@ class User(db.Model, Dao):
         self.is_logged = is_logged
         self.is_active = is_active
         self.image = image
-    
