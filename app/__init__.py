@@ -72,3 +72,5 @@ for item in modules:
         getattr(module, f"{item['name']}"),
         url_prefix=f"/api/v{item['version']}{item['path']}"
     )
+
+from app.view import *
