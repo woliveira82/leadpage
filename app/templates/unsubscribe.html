@@ -1,13 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Unsubscribe</title>
-    <meta name="description" content="My Page Description">
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
-</head>
-<body>
-    <h1>Unsubscribe</h1>
-    <script src="js/scripts.js"></script>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Unsubscribe{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/unsubscribe.css') }}" />
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <div class="page-tilte">
+            PAGE-TITLE
+        </div>
+        <div>
+            NOTIFICATION
+        </div>
+    </div>
+{% endblock %}
