@@ -1,11 +1,7 @@
-from datetime import datetime
-
 from app import db
 
-from . import Dao
 
-
-class User(db.Model, Dao):
+class User(db.Model):
     
     __tablename__ = 'user'
 
@@ -22,15 +18,38 @@ class User(db.Model, Dao):
     image = db.Column(db.String(255), nullable=True)
 
 
-    def __init__(self, email, password, first_name, recovery_email=None, old_password=None, last_name=None, created_at=None, is_logged=None, is_active=None, image=None, id=None):
-        self.id = id
-        self.email = email
-        self.recovery_email = recovery_email
-        self.password = password
-        self.old_password = old_password
-        self.first_name = first_name
-        self.last_name = last_name
-        self.created_at = created_at if created_at else datetime.now()
-        self.is_logged = is_logged
-        self.is_active = is_active
-        self.image = image
+    @staticmethod
+    def create(email, password, first_name, recovery_email=None, last_name=None, image=None):
+        user_data = {
+            'email': email,
+            'recovery_email': recovery_email,
+            'password': password,
+            'old_password': None,
+            'first_name': first_name,
+            'last_name': last_name,
+            'created_at': None,
+            'is_logged': False,
+            'is_active': True,
+            'image': image,
+        }
+        user = User(**user_data)
+        db.session.add(user)
+        db.session.commit()
+        return user
+
+
+    def to_dict(self):
+        user = {
+            'id': self.id,
+            'email': self.email,
+            'recovery_email': self.recovery_email,
+            'password': self.password,
+            'old_password': self.old_password,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'created_at': self.created_at,
+            'is_logged': self.is_logged,
+            'is_active': self.is_active,
+            'image': self.image,
+        }
+        return user
