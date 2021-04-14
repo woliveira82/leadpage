@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Admin{% endblock %}
+{% block title %}Login{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
 {% endblock %}
 
 {% block content %}
@@ -12,10 +12,7 @@
     </header>
     <div class="main">
         <div>
-            NAVIGATION
-        </div>
-        <div>
-            LEAD-DATA
+            LOGIN
         </div>
     </div>
 {% endblock %}
