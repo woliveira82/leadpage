@@ -1,5 +1,5 @@
 from flask import render_template
-
+from flask_jwt_extended import jwt_required
 from app import app
 
 
@@ -41,10 +41,3 @@ def email_list():
 @app.route('/email')
 def email():
     return render_template('email.html')
-
-
-@jwt_required
-@app.route('/lead-list')
-def lead_list():
-    return render_template('lead-list.html')
-
