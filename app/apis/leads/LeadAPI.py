@@ -3,7 +3,7 @@ from flask.views import MethodView
 from flask_jwt_extended import create_access_token, jwt_required
 
 from app.inc import Parser, Response, ResponseException, Valid
-from app.model import Leads
+from app.model import Lead
 
 
 class LeadAPI(MethodView):
@@ -14,13 +14,13 @@ class LeadAPI(MethodView):
         query = {'is_active': True}
         if leads_id:
             query.update({'id': leads_id})
-            leads_list = Leads.read(query=query)
+            leads_list = Lead.read(query=query)
             if len(leads_list) == 0:
                 return Response({}).to_dict()
 
             return Response(leads_list[0]).to_dict()
 
-        leads_list = Leads.read(query=query)
+        leads_list = Lead.read(query=query)
         return Response(leads_list).to_dict()
         
 
@@ -31,7 +31,7 @@ class LeadAPI(MethodView):
             'is_active': Valid(default=True),
             'extra_conf': Valid(),
         })
-        lead = Leads(**data).create()
+        lead = Lead(**data).create()
         return Response(lead, 201).to_dict()
 
 
@@ -40,7 +40,7 @@ class LeadAPI(MethodView):
             'email': Valid(required=True),
         })
         data.update({'is_active': True})
-        leads_list = Leads.read(query=data)
+        leads_list = Lead.read(query=data)
         if len(leads_list) == 0:
             return Response('No active email found', 200).to_dict()
         

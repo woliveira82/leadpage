@@ -31,13 +31,13 @@ def handler_error(app):
 def handler_jwt_error(app, jwt):
 
 
-    @jwt.claims_verification_failed_loader
+    # @jwt.claims_verification_failed_loader
     @jwt.needs_fresh_token_loader
     @jwt.invalid_token_loader
     @jwt.revoked_token_loader
-    @jwt.token_in_blacklist_loader
+    # @jwt.token_in_blacklist_loader
     @jwt.unauthorized_loader
-    @jwt.user_loader_error_loader
+    # @jwt.user_loader_error_loader
     def token_callback(error):
         data = str(error) if app.config['DEBUG'] else None
         return ResponseException(data, status=401).to_dict(), 401
@@ -60,17 +60,17 @@ manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
 modules = [
-    {'name': 'info', 'path': '/info', 'version': 1},
-    {'name': 'login', 'path': '/login', 'version': 1},
-    {'name': 'token', 'path': '/tokens', 'version': 1},
-    {'name': 'leads', 'path': '/leads', 'version': 1},
+    {'name': 'info', 'path': '/info'},
+    {'name': 'login', 'path': '/login'},
+    {'name': 'token', 'path': '/tokens'},
+    # {'name': 'leads', 'path': '/leads'},
 ]
 
 for item in modules:
     module = importlib.import_module(f".{item['name']}", package="app.apis")
     app.register_blueprint(
         getattr(module, f"{item['name']}"),
-        url_prefix=f"/api/v{item['version']}{item['path']}"
+        url_prefix=f"/api{item['path']}"
     )
 
 from app.view import *
