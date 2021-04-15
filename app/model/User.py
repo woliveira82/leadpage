@@ -16,14 +16,15 @@ class User(db.Model):
     is_logged = db.Column(db.Boolean, nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
     image = db.Column(db.String(255), nullable=True)
+    campaign_list = db.relationship('Campaign', lazy=True)
 
 
-    @staticmethod
-    def create(email, password, first_name, recovery_email=None, last_name=None, image=None):
+    @classmethod
+    def create(cls, email, password, first_name, recovery_email=None, last_name=None, image=None):
         user_data = {
             'email': email,
             'recovery_email': recovery_email,
-            'password': password,
+            'password': '*****',
             'old_password': None,
             'first_name': first_name,
             'last_name': last_name,
@@ -32,10 +33,15 @@ class User(db.Model):
             'is_active': True,
             'image': image,
         }
-        user = User(**user_data)
+        user = cls(**user_data)
         db.session.add(user)
         db.session.commit()
         return user
+
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
 
     def to_dict(self):
@@ -43,8 +49,8 @@ class User(db.Model):
             'id': self.id,
             'email': self.email,
             'recovery_email': self.recovery_email,
-            'password': self.password,
-            'old_password': self.old_password,
+            'password': '*****',
+            'old_password': '*****',
             'first_name': self.first_name,
             'last_name': self.last_name,
             'created_at': self.created_at,
