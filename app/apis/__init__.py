@@ -1,4 +1,4 @@
-from .info import info
+from app.apis.info import info
 from app.apis.login import login
-from .token import token
-from .leads import leads
+from app.apis.token import token
+# from .leads import leads

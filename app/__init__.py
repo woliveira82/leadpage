@@ -49,13 +49,13 @@ def handler_jwt_error(app, jwt):
         return ResponseException(data, status=401).to_dict(), 401
 
 app = Flask(__name__, instance_relative_config=True)
-handler_error(app)
+# handler_error(app)
 app.config.from_pyfile('config.py')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
-handler_jwt_error(app, jwt)
+# handler_jwt_error(app, jwt)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 

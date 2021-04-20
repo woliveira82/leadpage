@@ -13,7 +13,7 @@ def post_login():
         'email': fields.Email(required=True),
         'password': fields.Str(required=True)
     }, request)
-    user = User.session.filter_by(**json).first()
+    user = User.query.filter_by(**json).first()
     if not user:
         raise ResponseException('Email or password is wrong', status=401)
 
