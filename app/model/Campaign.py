@@ -16,8 +16,7 @@ class Campaign(db.Model):
     
 
     @classmethod
-    def create(cls, name, description=None):
-        user_id #get user_id from session
+    def create(cls, name, user_id, description=None):
         campaign_data = {
             'name': name,
             'description': description,

@@ -3,7 +3,7 @@ from app.inc import Response, ResponseException
 from app.model import User
 from flask import request
 from flask_jwt_extended import create_access_token
-from webargs import fields, validate
+from webargs import fields
 from webargs.flaskparser import parser
 
 
@@ -21,7 +21,7 @@ def post_login():
     return Response({'access_token': access_token}).to_dict()
 
 
-@login.route('/', methods=['POST'])
+@login.route('/logout', methods=['POST'])
 def post_logout():
     return 'ok'
 

@@ -63,6 +63,7 @@ modules = [
     {'name': 'info', 'path': '/info'},
     {'name': 'login', 'path': '/login'},
     {'name': 'token', 'path': '/tokens'},
+    {'name': 'campaign', 'path': '/campaigns'},
     # {'name': 'leads', 'path': '/leads'},
 ]
 
